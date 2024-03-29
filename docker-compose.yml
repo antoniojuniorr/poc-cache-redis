@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  #Service Redis
+  redis:
+    image: redis
+    container_name: redis
+    hostname: redis
+    ports:
+      - "6379:6379"
+
+  #Interface Grafica do Usuario (GUI)
+  redis-commader:
+      container_name: redis-comander
+      hostname: redis-comander
+      image: rediscommander/redis-commander:latest
+      environment:
+        - REDIS_HOSTS=local:redis:6379
+      ports:
+        - "8081:8081"
